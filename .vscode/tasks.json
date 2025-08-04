@@ -1,0 +1,66 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "CMake: Configure",
+			"type": "shell",
+			"command": "cmake",
+			"args": [
+				"-S", ".", 
+				"-B", "build"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "CMake: Build Protimer", 
+			"type": "shell",
+			"command": "cmake",
+			"args": [
+				"--build", "build",
+				"-t", "compile_protimer"
+			], 
+			"group": "build",
+			"problemMatcher": ["$gcc"]
+		}, 
+		{
+			"label": "CMake: Upload Protimer", 
+			"type": "shell",
+			"command": "cmake",
+			"args": [
+				"--build", "build",
+				"-t", "upload_protimer"
+			], 
+			"group": "build",
+			"problemMatcher": ["$gcc"]
+		}, 		
+		{
+			"label": "CMake: Clean",
+			"type": "shell",
+			"command": "cmake",
+			"args": [
+				"--build", "build",
+				"-t", "clean"
+			], 
+			"group": "build",
+			"problemMatcher": ["$gcc"]
+		},
+		{
+			"label": "Project Full Clean",
+			"type": "shell",
+			"command": "Remove-Item",
+			"args": [
+				"-Path", "./build", 
+				"-Recurse"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"problemMatcher": []
+		}		
+	]
+}
