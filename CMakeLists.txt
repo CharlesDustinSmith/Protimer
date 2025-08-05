@@ -25,7 +25,7 @@ set( BUILD_DIR ${CMAKE_BINARY_DIR}/protimer_build )
 # Compile target - calls arduino-cli compile 
 add_custom_target(compile_protimer
     COMMAND arduino-cli compile 
-            --fqbn ${ARDUINO_BOARD} 
+            --fqbn ${ARDUINO_BOARD}
             --build-path ${BUILD_DIR} 
             ${ARDUINO_SKETCH_DIR}
     COMMENT "Compiling sketch with Arduino CLI"

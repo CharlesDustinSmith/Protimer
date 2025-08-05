@@ -7,7 +7,8 @@
 			"command": "cmake",
 			"args": [
 				"-S", ".", 
-				"-B", "build"
+				"-B", "build",
+				"-G", "Unix Makefiles"
 			],
 			"group": {
 				"kind": "build",
@@ -24,6 +25,7 @@
 				"-t", "compile_protimer"
 			], 
 			"group": "build",
+			"dependsOn": "CMake: Configure",
 			"problemMatcher": ["$gcc"]
 		}, 
 		{
