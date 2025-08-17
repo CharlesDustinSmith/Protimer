@@ -3,6 +3,28 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <LiquidCrystal.h>
+
+/*  Macros for pins */
+#define PIN_BTN_1       2
+#define PIN_BTN_2       3
+#define PIN_BTN_3       4
+#define PIN_BUZZER      12
+
+/* Macros for LCD connections */
+#define LCD_RS          5
+#define LCD_RW          6
+#define LCD_EN          7
+#define LCD_D4          8
+#define LCD_D5          9
+#define LCD_D6          10
+#define LCD_D7          11
+
+/* Macros for button pad */
+#define BTN_PAD_VALUE_INC_TIME  4
+#define BTN_PAD_VALUE_DEC_TIME  2
+#define BTN_PAD_VALUE_ABRT      6
+#define BTN_PAD_VALUE_SP        1
 
 /* Signals of the application */
 typedef enum {
@@ -59,5 +81,12 @@ typedef struct {
     event_t super;
     uint8_t ss;
 } protimer_tick_event_t;
+
+typedef enum 
+{
+    EVENT_HANDLED,
+    EVENT_IGNORED, 
+    EVENT_TRANSITION
+} event_status_t;
 
 #endif

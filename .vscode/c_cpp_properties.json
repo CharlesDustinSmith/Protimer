@@ -4,7 +4,12 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}"
+                "${workspaceFolder}",
+                "C:/Users/GT_Du/AppData/Local/Arduino15/packages/arduino/hardware/mbed_portenta/4.1.1/libraries/**",
+                "C:/Users/GT_Du/AppData/Local/Arduino15/libraries/LiquidCrystal/src",
+                "C:/Users/GT_Du/AppData/Local/Arduino15/packages/arduino/hardware/mbed_portenta/4.1.1/cores/arduino",
+                "C:/Users/GT_Du/AppData/Local/Arduino15/packages/arduino/hardware/mbed_portenta/4.1.1/variants/**",
+                "C:/Users/GT_Du/AppData/Local/Arduino15/packages/arduino/hardware/mbed_portenta/4.1.1/cores/arduino/api"
             ],
             "defines": [
                 "_DEBUG",
