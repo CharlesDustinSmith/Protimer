@@ -19,7 +19,8 @@ set( CMAKE_CXX_EXTENSIONS )
 set( ARDUINO_SKETCH_DIR ${CMAKE_SOURCE_DIR} )
 # FQBN (Fully Qualified Board Name) of your board
 # You can discover this with `arduino-cli board list`; the CLI docs show the FQBN option  as `-b/--fqbn`:contentReference[oaicite:1]{index=1}
-set( ARDUINO_BOARD arduino:mbed_portenta:envie_m7 )
+#set( ARDUINO_BOARD arduino:mbed_portenta:envie_m7 )
+set( ARDUINO_BOARD arduino:avr:uno )
 # Output directory for build products
 set( BUILD_DIR ${CMAKE_BINARY_DIR}/protimer_build )
 # Compile target - calls arduino-cli compile 

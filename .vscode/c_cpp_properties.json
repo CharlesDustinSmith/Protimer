@@ -9,7 +9,9 @@
                 "C:/Users/GT_Du/AppData/Local/Arduino15/libraries/LiquidCrystal/src",
                 "C:/Users/GT_Du/AppData/Local/Arduino15/packages/arduino/hardware/mbed_portenta/4.1.1/cores/arduino",
                 "C:/Users/GT_Du/AppData/Local/Arduino15/packages/arduino/hardware/mbed_portenta/4.1.1/variants/**",
-                "C:/Users/GT_Du/AppData/Local/Arduino15/packages/arduino/hardware/mbed_portenta/4.1.1/cores/arduino/api"
+                "C:/Users/GT_Du/AppData/Local/Arduino15/packages/arduino/hardware/mbed_portenta/4.1.1/cores/arduino/api",
+                "C:/Users/GT_Du/AppData/Local/Arduino15/packages/arduino/hardware/mbed_portenta/4.1.1/cores/arduino/mbed/targets/TARGET_STM",
+                "C:/Users/GT_Du/AppData/Local/Arduino15/packages/arduino/hardware/mbed_portenta/4.1.1/cores/arduino/mbed/targets/TARGET_STM/TARGET_STM32F0"
             ],
             "defines": [
                 "_DEBUG",
