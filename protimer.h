@@ -4,6 +4,7 @@
 #include <LiquidCrystal.h>
 #include <stdint.h>
 #include <stdio.h>
+#include "lcd.h"
 
 /*  Macros for pins */
 #define PIN_BTN_1 2
@@ -87,5 +88,13 @@ typedef enum {
     EVENT_IGNORED,
     EVENT_TRANSITION
 } event_status_t;
+
+typedef enum{
+    NOT_PRESSED, 
+    BOUNCE, 
+    PRESSED
+} button_state_t;
+
+
 
 #endif

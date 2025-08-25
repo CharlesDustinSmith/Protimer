@@ -1,11 +1,18 @@
 #include "protimer_state_machine.h"
 
+static void display_message(String s, uint8_t c, uint8_t r);
+
 /// @brief
 /// @param mobj
 void protimer_init(protimer_t *mobj)
 {
+    event_t ee;
+    ee.sig = ENTRY;
+
     mobj->active_state = IDLE;
     mobj->pro_time = 0;
+
+    protimer_state_machine(mobj, &ee);
 }
 
 /// @brief
@@ -39,7 +46,8 @@ event_status_t protimer_state_handler_IDLE(protimer_t *mobj, event_t *e)
         mobj->curr_time = entry_time;
         mobj->elapsed_time = entry_time;
         display_time(entry_time);
-        display_message("Set time");
+        display_message("Set", 0, 0);
+        display_message("time", 0, 1);
         return EVENT_HANDLED;
     }
     case EXIT: {
@@ -75,7 +83,7 @@ event_status_t protimer_state_handler_STAT(protimer_t *const mobj, event_t *cons
     switch (e->sig) {
     case ENTRY: {
         display_time(mobj->pro_time);
-        display_message("Productive Time");
+        display_message("Productive Time", 1, 1);
         return EVENT_HANDLED;
     }
     case EXIT: {
@@ -150,7 +158,7 @@ event_status_t protimer_state_handler_PAUSE(protimer_t *const mobj, event_t *con
 {
     switch (e->sig) {
     case ENTRY: {
-        display_message("Paused");
+        display_message("Paused", 5, 1);
         return EVENT_HANDLED;
     }
     case EXIT: {
@@ -198,22 +206,36 @@ void protimer_event_dispatcher(protimer_t *const mobj, event_t *const e)
 static void display_time(uint32_t &time)
 {
     // TODO: this should be a wrapper for the lcd screen
+    char buf[7];
+    String time_msg;
+
+    uint8_t sec = time % 60;
+    uint16_t min = time / 60;
+
+    sprintf(buf, "%03d:%02d", min, sec);
+
+    time_msg = (String)buf;
+    lcd_set_cursor(5, 0);
+    lcd_print_string(time_msg);
 }
 
 /// @brief A function that will display the message on an LCD screen
 /// @param message
-static void display_message(const char *message)
+static void display_message(String s, uint8_t c, uint8_t r)
 {
     // TODO: this should be a wrapper for the lcd screen
+    lcd_set_cursor(c, r);
+    lcd_print_string(s);
 }
 /// @brief A function that will clear the display on an LCD screen
 static void display_clear()
 {
     // TODO: this should be a wrapper for the lcd screen
+    lcd_clear();
 }
 /// @brief A function that produces a beep from the microcontroller
 static void do_beep()
 {
     // TODO: this should be a wrapper for the passive / active buzzer
-    
+    tone(PIN_BUZZER, 4000, 25);
 }

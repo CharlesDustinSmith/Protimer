@@ -4,12 +4,22 @@
 
 /* Function declarations */
 static uint8_t process_btn_pad_value(uint8_t btn_pad_value);
+static void display_init(void);
 
 /* Main application object */
 static protimer_t protimer;
 
 void setup()
 {
+    /* Put your setup code here, to run once: */
+    Serial.begin(115200);
+    display_init();
+    Serial.println("Productive timer applicarion");
+    Serial.println("============================");
+    pinMode(PIN_BTN_1, INPUT);
+    pinMode(PIN_BTN_2, INPUT);
+    pinMode(PIN_BTN_3, INPUT);
+
     protimer_init(&protimer);
 }
 
@@ -60,5 +70,55 @@ void loop()
 
 static uint8_t process_btn_pad_value(uint8_t btn_pad_value)
 {
+    static uint8_t btn_sm_state = NOT_PRESSED;
+    static uint8_t curr_time = millis();
+    
+    switch(btn_sm_state)
+    {
+        case NOT_PRESSED:
+        {
+            if(btn_pad_value)
+            {
+                btn_sm_state = BOUNCE;
+                curr_time = millis();
+            }
+            break;
+        }
+        case BOUNCE:
+        {
+            if(millis() - curr_time >= 50 )
+            {
+                // 50ms has passed 
+                if(btn_pad_value)
+                {
+                    btn_sm_state = PRESSED;
+                    return btn_pad_value;
+                }
+                else
+                {
+                    btn_sm_state = NOT_PRESSED;
+                }
+            }
+        }
+        case PRESSED:
+        {
+            if(!btn_pad_value)
+            {
+                btn_sm_state = BOUNCE;
+                curr_time = millis();
+            }
+        }
+
+    }
     return 0;
+}
+
+static void display_init(void)
+{
+    lcd_begin(16, 2);
+    lcd_clear();
+    lcd_move_cursor_L_to_R();
+    lcd_set_cursor(0, 0);
+    lcd_no_auto_scroll();
+    lcd_cursor_off();
 }
